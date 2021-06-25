@@ -1,0 +1,7 @@
+---
+# ssh.yml
+- name: 'configure ssh keys'
+  hosts: default
+  gather_facts: false
+  roles:
+    - install_ssh-keys

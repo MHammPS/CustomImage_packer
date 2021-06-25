@@ -1,0 +1,45 @@
+{
+  
+  "builders": [
+      {
+        "type": "openstack",
+        "identity_endpoint": "https://api.gx-scs.sovereignit.cloud:5000/v3",
+        "tenant_id": "{{user `tenant_id`}}",
+        "domain_name": "{{user `domain_name`}}",
+        "username": "{{user `username`}}",
+        "password": "{{user `password`}}",
+        "region": "{{user `region`}}",
+        "ssh_username": "{{user `ssh_username`}}",
+        "image_name": "{{user `image_name`}}-{{isotime \"02-Jan-06 03_04_05\"}}",
+        "source_image": "{{user `source_image`}}",
+        "flavor": "{{user `flavor`}}",
+        "networks": "{{user `networks`}}",
+        "floating_ip_network": "{{user `floating_ip_network`}}",
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "file",
+        "source": "scripts/startup.sh",
+        "destination": "/home/centos/startup.sh"
+      },
+      {
+          "type": "shell",
+          "inline": [
+            "sudo chmod 777 /home/centos/startup.sh",
+            "sudo sh /home/centos/startup.sh"
+          ]
+      },
+      {
+          "type": "ansible",
+          "user":  "{{user `username`}}",
+          "playbook_file": "./ansible/ssh.yml"
+        }
+    ],
+    "post-processors": [
+      {
+        "type": "manifest",
+        "output": "output_packer_shell-ansible.json"
+      }
+    ]
+}

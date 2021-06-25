@@ -1,0 +1,13 @@
+{
+    "username": "OpenstackUser",
+    "password": "OpenstackPassword",
+    "tenant_id": "OpenstackProjectID",
+    "domain_name": "Default",
+    "image_name": "CustomImage",
+    "source_image": "68514ee5-4029-424d-b9f9-c6efdedd80f4",
+    "flavor": "1C-0.5GB-20GB",
+    "networks": "57cd324c-a21e-4f60-967d-13100eedafca",
+    "floating_ip_network": "a882b33a-f52e-4e0e-872d-140606e16930",
+    "ssh_username": "centos",
+    "region": "RegionOne"
+}

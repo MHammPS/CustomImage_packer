@@ -1,0 +1,10 @@
+---
+
+- name: Set up multiple authorized keys
+  authorized_key:
+    user: "centos"
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - extern.kippnick.pub
+    - extern.hamm.pub
